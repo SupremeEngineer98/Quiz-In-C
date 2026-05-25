@@ -34,3 +34,6 @@ Using GCC:
 
 ```bash
 gcc main.c -o quiz
+
+```Windows
+quiz.exe
