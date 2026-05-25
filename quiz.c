@@ -12,9 +12,15 @@ void clean_screen();
 //main 
 int main()
 {
-
+      
     //declaring variables
     char menu_choice = '\0';
+    char questions[][100];
+    char options[][100];
+    char correct_answer[][100];
+    int  question_count = 0;
+    int  score = 0;
+    
 
     //main while loop
     while(menu_choice != 'C')
