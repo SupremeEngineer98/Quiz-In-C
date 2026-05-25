@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include "quiz.h"
+#include <ctype.h>
 //QUIZ GAME
 
 //function prototypes
 char main_menu(char menu_choice);
-//clean buffer function
-void clean_buffer();
-void clean_screen();
 
 //main 
 int main()
@@ -15,11 +13,12 @@ int main()
       
     //declaring variables
     char menu_choice = '\0';
-    char questions[][100];
-    char options[][100];
-    char correct_answer[][100];
+    char questions[10][100];
+    char options[10][100];
+    char correct_answer[10][100];
     int  question_count = 0;
     int  score = 0;
+    int questions_number = 0;
     
 
     //main while loop
@@ -27,6 +26,19 @@ int main()
     {
        //display main menu
        menu_choice = main_menu(menu_choice);
+       menu_choice = toupper(menu_choice);//normalize input into a capital letter
+
+       //switch method to display menu choises
+       switch(menu_choice)
+       {
+         case 'A': //create quiz case!
+         //call questions number method!
+         questions_number = number_of_questions(questions_number);
+
+         //create quiz!
+         create_quiz(questions,questions_number);
+         break;
+       }
     }
 
     //goodbye message
@@ -63,17 +75,3 @@ char main_menu(char menu_choice)
 
 //helper functions
 
-//clean buffer function
-void clean_buffer()
-{
-    int c;
-    while((c = getchar()) != '\n' && c != EOF);
-}
-
-//clean screan function
-void clean_screen()
-{
-    printf("Press any key to continue..");
-    getchar();
-    system("cls");
-}
