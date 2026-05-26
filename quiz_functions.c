@@ -6,6 +6,8 @@ int number_of_questions(int questions_number);
 void create_quiz(char questions[][100],int questions_number);
 void clean_buffer();
 void clean_screen();
+void add_options(char options[10][4][100], int questions_number);
+
 //create quiz function!
 void create_quiz(char questions[][100],int questions_number)
 {
@@ -67,7 +69,50 @@ int number_of_questions(int questions_number)
    return questions_number;
 }
 
+//add options function 
+void add_options(char options[10][4][100], int questions_number)
+{
+    
 
+            //promt user to enter options!
+    printf("\nPlease enter options for quiz questions with the order you entered the questions\n");
+
+
+    //for loop to iterate through the array!
+    for(int i = 0; i< questions_number; i++)
+    {
+     printf("Option for question %d\n", i+1);
+    
+    //for loop to enter 4 options for each question
+    for(int j = 0; j<4; j++)
+    {
+    
+    printf("\nEnter option %d: ", j + 1);
+    //get user's options
+    fgets(options[i][j],100, stdin);
+
+    //sanitizing input
+    options[i][j][strcspn(options[i][j], "\n")]  ='\0';
+
+    //return an error message if option is null
+    if(options[i][j][0] == 0 )
+    {
+        printf("Invalid input.Please enter a valid option\n");
+        
+        
+        i--;//retry the same question
+        //clean buffer!
+        clean_buffer();
+          continue;
+    }
+   
+
+    }
+    
+
+    }     
+
+}
 
 
 

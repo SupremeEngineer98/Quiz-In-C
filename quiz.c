@@ -14,7 +14,7 @@ int main()
     //declaring variables
     char menu_choice = '\0';
     char questions[10][100];
-    char options[10][100];
+    char options[10][4][100];
     char correct_answer[10][100];
     int  question_count = 0;
     int  score = 0;
@@ -37,6 +37,9 @@ int main()
 
          //create quiz!
          create_quiz(questions,questions_number);
+
+         //add options 
+         add_options(options,questions_number);
          break;
        }
     }
