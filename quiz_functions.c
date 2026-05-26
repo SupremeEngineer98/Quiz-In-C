@@ -15,7 +15,7 @@ void create_quiz(char questions[][100],int questions_number)
     for(int i = 0; i < questions_number; i++)
     {
         //prompt user to enter a question
-        printf("\nEnter question: %d", i+1);
+        printf("\nEnter question  %d:", i+1);
         
         fgets(questions[i], 100, stdin);
         //sanitizing input and removing '\n'
@@ -59,6 +59,7 @@ int number_of_questions(int questions_number)
         continue;
 
     }
+    clean_buffer();//clean buffer in order for fgets sanitation to work
         //exit loop
         break;
     }
