@@ -157,7 +157,7 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
             strcmp(answer_key[i], "C") != 0 &&
             strcmp(answer_key[i], "D") != 0)
             {
-                printf("Invalid input. Please add A,B,C or D\n");
+                printf("Invalid input. Please add A,B,C or D: ");
                 //clean buffer
                    clean_buffer();
               //return to the beginning
