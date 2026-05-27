@@ -16,6 +16,7 @@ int main()
     char questions[10][100];
     char options[10][4][100];
     char correct_answer[10][100];
+    char answer_key[10][10];
     int  question_count = 0;
     int  score = 0;
     int questions_number = 0;
@@ -40,6 +41,9 @@ int main()
 
          //add options 
          add_options(options,questions_number);
+
+         //add correct answer for each option
+         add_answer_keys(answer_key,options,questions_number);
          break;
        }
     }

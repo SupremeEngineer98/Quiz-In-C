@@ -1,12 +1,21 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdlib.h>
+#include <ctype.h>
 //file which stores all logic!
+
+//function prototypes
 int number_of_questions(int questions_number);
+
 void create_quiz(char questions[][100],int questions_number);
+
 void clean_buffer();
+
 void clean_screen();
+
 void add_options(char options[10][4][100], int questions_number);
+
+void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
 //create quiz function!
 void create_quiz(char questions[][100],int questions_number)
@@ -47,7 +56,7 @@ int number_of_questions(int questions_number)
     while(1)
     {
         //promt user to enter number of questions
-    printf("How many questions do you wish to add?\n");
+    printf("\nHow many questions do you wish to add?\n");
     printf("Enter number: ");
     
     //validate that user will insert a valid number!
@@ -111,6 +120,62 @@ void add_options(char options[10][4][100], int questions_number)
     
 
     }     
+
+}
+
+//method to add the answer keys
+void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number)
+{
+    //prompt user to enter A,B,C,D to choose the correct answer
+    printf("Add A,B,C,D for each question to determine the correct answers\n");
+
+    while(1)
+    {
+         //add a correct option for each answer
+    for(int i=0; i < questions_number; i++)
+    {
+        printf("Correct answer key for question %d:", i +1);
+        fgets(answer_key[i], 10, stdin);
+        //sanitize input from '\n'
+        answer_key[i][strcspn(answer_key[i], "\n")] = '\0';
+        
+        if(answer_key[i] == 0)
+        {
+            //return an error message if answer is null
+        printf("Please enter a valid answer key (A,B,C,D)\n");
+
+        //clean buffer
+        clean_buffer();
+        //return to the beginning
+        continue;
+
+        }
+    
+           ///return an error message if answer_key is not a letter between A-D
+            if (strcmp(answer_key[i], "A") != 0 &&
+            strcmp(answer_key[i], "B") != 0 &&
+            strcmp(answer_key[i], "C") != 0 &&
+            strcmp(answer_key[i], "D") != 0)
+            {
+                printf("Invalid input. Please add A,B,C or D\n");
+                //clean buffer
+                   clean_buffer();
+              //return to the beginning
+              continue;
+            }
+
+        
+          //normalize input
+            answer_key[i][0] = toupper(answer_key[i][0]);
+        
+    }
+     break;
+
+    }
+   
+
+  
+
 
 }
 
