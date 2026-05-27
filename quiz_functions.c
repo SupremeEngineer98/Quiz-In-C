@@ -81,9 +81,7 @@ int number_of_questions(int questions_number)
 //add options function 
 void add_options(char options[10][4][100], int questions_number)
 {
-    
-
-            //promt user to enter options!
+   //promt user to enter options!
     printf("\nPlease enter options for quiz questions with the order you entered the questions\n");
 
 
@@ -133,7 +131,10 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
          //add a correct option for each answer
     for(int i=0; i < questions_number; i++)
     {
-        printf("Correct answer key for question %d:", i +1);
+        while(1)
+        {
+            
+              printf("Correct answer key for question %d:", i +1);
         fgets(answer_key[i], 10, stdin);
         //sanitize input from '\n'
         answer_key[i][strcspn(answer_key[i], "\n")] = '\0';
@@ -156,16 +157,21 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
             strcmp(answer_key[i], "C") != 0 &&
             strcmp(answer_key[i], "D") != 0)
             {
-                printf("Invalid input. Please add capital A,B,C or D");
-                //clean buffer
-                   clean_buffer();
+                printf("Invalid input. Please add capital A,B,C or D\n");
+
+                
               //return to the beginning
               continue;
             }
+               //normalize input
+            answer_key[i][0] = toupper(answer_key[i][0]);
+            break;
+
+        }
+          
 
         
-          //normalize input
-            answer_key[i][0] = toupper(answer_key[i][0]);
+       
         
     }
      
