@@ -109,7 +109,7 @@ void add_options(char options[10][4][100], int questions_number)
         printf("Invalid input.Please enter a valid option\n");
         
         
-        i--;//retry the same question
+        j--;//retry the same question
         //clean buffer!
         clean_buffer();
           continue;
@@ -127,10 +127,9 @@ void add_options(char options[10][4][100], int questions_number)
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number)
 {
     //prompt user to enter A,B,C,D to choose the correct answer
-    printf("Add A,B,C,D for each question to determine the correct answers\n");
+    printf("\nAdd A,B,C,D for each question to determine the correct answers\n");
 
-    while(1)
-    {
+    
          //add a correct option for each answer
     for(int i=0; i < questions_number; i++)
     {
@@ -139,7 +138,7 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
         //sanitize input from '\n'
         answer_key[i][strcspn(answer_key[i], "\n")] = '\0';
         
-        if(answer_key[i] == 0)
+        if(answer_key[i][0] == 0)
         {
             //return an error message if answer is null
         printf("Please enter a valid answer key (A,B,C,D)\n");
@@ -157,7 +156,7 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
             strcmp(answer_key[i], "C") != 0 &&
             strcmp(answer_key[i], "D") != 0)
             {
-                printf("Invalid input. Please add A,B,C or D: ");
+                printf("Invalid input. Please add capital A,B,C or D");
                 //clean buffer
                    clean_buffer();
               //return to the beginning
@@ -169,9 +168,7 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
             answer_key[i][0] = toupper(answer_key[i][0]);
         
     }
-     break;
-
-    }
+     
    
 
   
