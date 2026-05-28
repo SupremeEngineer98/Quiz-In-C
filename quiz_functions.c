@@ -17,6 +17,9 @@ void add_options(char options[10][4][100], int questions_number);
 
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
+
+
+
 //create quiz function!
 void create_quiz(char questions[][100],int questions_number)
 {
@@ -112,12 +115,14 @@ void add_options(char options[10][4][100], int questions_number)
         clean_buffer();
           continue;
     }
-   
+       
 
     }
-    
+      
 
     }     
+
+    
 
 }
 
@@ -182,7 +187,25 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
 
 }
 
+//display questions function
+void display_questions(char questions[][100],int questions_number,char options[10][4][100])
+{
+    printf("Questions\n");
+    //for loop to display all questions
+    for(int i =0; i < questions_number; i++)
+    {
+        //print questions
+        printf("%s\n",questions[i]);
+          printf("Options for question %d\n", i+1);
+        //nested for loop to display options
+        for(int j = 0; j < 4; j++)
+        {
+         
+            printf("%s\n",options[i][j]);
+        }
 
+    }
+}
 
 //helper functions
 

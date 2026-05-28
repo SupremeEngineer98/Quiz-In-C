@@ -45,6 +45,12 @@ int main()
          //add correct answer for each option
          add_answer_keys(answer_key,options,questions_number);
          break;
+
+         //display quiz case
+         case 'B':
+
+         display_questions(questions,questions_number,options);
+         break;
        }
     }
 
