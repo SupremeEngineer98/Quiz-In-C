@@ -17,6 +17,8 @@ void add_options(char options[10][4][100], int questions_number);
 
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
+char get_user_answer(char user_answer);
+
 
 
 
@@ -179,12 +181,6 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
        
         
     }
-     
-   
-
-  
-
-
 }
 
 //display questions function
@@ -194,17 +190,50 @@ void display_questions(char questions[][100],int questions_number,char options[1
     //for loop to display all questions
     for(int i =0; i < questions_number; i++)
     {
+       
         //print questions
         printf("%s\n",questions[i]);
-          printf("Options for question %d\n", i+1);
+
+        printf("Options for question %d\n", i+1);
         //nested for loop to display options
         for(int j = 0; j < 4; j++)
         {
          
             printf("%s\n",options[i][j]);
+           
+            
         }
 
     }
+}
+
+
+// function to get user's answer for each question
+char get_user_answer(char user_answer)
+{
+    while(1)
+    {
+        //prompt user to enter his answer
+    printf("\nEnter your answer: ");
+
+    //get user's answer
+    //validate that user's input will be A,B,C or D
+
+    if(scanf(" %c", &user_answer) == 0 && user_answer && 'A' && user_answer != 'B' && user_answer != 'C' && user_answer !='D')
+    {
+        //return an error message
+        printf("Invalid input.Please insert A,B,C or D");
+        //clean buffer
+        clean_buffer();
+
+        continue;
+
+    }
+      break;
+
+    }
+    
+    return user_answer;
 }
 
 //helper functions

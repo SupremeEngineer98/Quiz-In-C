@@ -17,6 +17,7 @@ int main()
     char options[10][4][100];
     char correct_answer[10][100];
     char answer_key[10][10];
+    char user_answer = '\0'; 
     int  question_count = 0;
     int  score = 0;
     int questions_number = 0;
@@ -49,7 +50,17 @@ int main()
          //display quiz case
          case 'B':
 
+         //display an error message if there are no questions added yet
+         if(questions_number <= 0)
+         {
+            printf("There are no questions added yet\n");
+            continue;
+         }
+
          display_questions(questions,questions_number,options);
+
+         //get user's answer
+         get_user_answer(user_answer);
          break;
        }
     }
