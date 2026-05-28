@@ -186,7 +186,7 @@ void add_answer_keys(char answer_key[10][10],char options[10][4][100], int quest
 //display questions function
 void display_questions(char questions[][100],int questions_number,char options[10][4][100])
 {
-    printf("Questions\n");
+    printf("\nQuestions\n");
     //for loop to display all questions
     for(int i =0; i < questions_number; i++)
     {
@@ -219,16 +219,28 @@ char get_user_answer(char user_answer)
     //get user's answer
     //validate that user's input will be A,B,C or D
 
-    if(scanf(" %c", &user_answer) == 0 && user_answer && 'A' && user_answer != 'B' && user_answer != 'C' && user_answer !='D')
+    if(scanf(" %c", &user_answer) != 1 )
     {
         //return an error message
-        printf("Invalid input.Please insert A,B,C or D");
+        printf("Input error\n");
         //clean buffer
         clean_buffer();
 
         continue;
 
     }
+
+    if(user_answer != 'A' && user_answer != 'B' && user_answer != 'C' && user_answer !='D')
+    {
+        printf("Invalid choise.Please select between A,B,C or D\n");
+        
+        //clean buffer
+        clean_buffer();
+        continue;
+    }
+
+    //capitalize input
+    user_answer == toupper(user_answer);
       break;
 
     }
