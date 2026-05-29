@@ -248,6 +248,8 @@ char get_user_answer(char user_answer)
     return user_answer;
 }
 
+
+
 //helper functions
 
 //clean buffer function

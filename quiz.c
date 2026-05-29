@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include "quiz.h"
 #include <ctype.h>
+#include <string.h>
 //QUIZ GAME
 
 //function prototypes
@@ -50,18 +51,35 @@ int main()
          //display quiz case
          case 'B':
 
-         //display an error message if there are no questions added yet
+              //display an error message if there are no questions added yet
          if(questions_number <= 0)
          {
             printf("There are no questions added yet\n");
             continue;
          }
 
-         display_questions(questions,questions_number,options);
+          display_questions(questions,questions_number,options);//display all the questions
+         //for loop to iterate through each question!
+         for(int i = 0; i < questions_number; i++)
+         {
+               
 
          //get user's answer
-         get_user_answer(user_answer);
+         user_answer =  get_user_answer(user_answer);
+
+         //validate whether user's answer is correct or not
+         if(user_answer == answer_key[i][0])
+         {
+            printf("\nCorrect\n");
+
+            //increase score
+            score++;
+         }
+         
+
+         }
          break;
+       
        }
     }
 
