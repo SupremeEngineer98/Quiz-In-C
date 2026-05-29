@@ -17,7 +17,7 @@ void add_options(char options[10][4][100], int questions_number);
 
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
-char get_user_answer(char user_answer);
+char get_user_answer(char user_answer,int questions_number);
 
 
 
@@ -209,12 +209,12 @@ void display_questions(char questions[][100],int questions_number,char options[1
 
 
 // function to get user's answer for each question
-char get_user_answer(char user_answer)
+char get_user_answer(char user_answer,int questions_number)
 {
     while(1)
     {
         //prompt user to enter his answer
-    printf("\nEnter your answer: ");
+    printf("\nEnter your answer for question %d: ", questions_number);
 
     //get user's answer
     //validate that user's input will be A,B,C or D

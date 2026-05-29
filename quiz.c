@@ -64,7 +64,7 @@ int main()
                
 
          //get user's answer
-         user_answer =  get_user_answer(user_answer);
+         user_answer =  get_user_answer(user_answer,questions_number);
 
          //validate whether user's answer is correct or not
          if(user_answer == answer_key[i][0])
