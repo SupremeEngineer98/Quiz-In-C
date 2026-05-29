@@ -20,6 +20,7 @@ int main()
     char answer_key[10][10];
     char user_answer = '\0'; 
     int  score = 0;
+    int min_score = 0;
     int questions_number = 0;
     
 
@@ -34,8 +35,8 @@ int main()
        switch(menu_choice)
        {
          case 'A': //create quiz case!
-         //call questions number method!
-         questions_number = number_of_questions(questions_number);
+         //call questions number method to add minimum score and quiz's questions number!
+         questions_number = number_of_questions(questions_number,min_score);
 
          //create quiz!
          create_quiz(questions,questions_number);
@@ -84,6 +85,17 @@ int main()
          }
          //display score
          printf("\nYour final score is: %d out of %d questions\n", score, questions_number);
+
+         //return a message to notify user if he won or not
+
+         if(has_user_won(score, min_score))
+         {
+            printf("Congragulations you won!!!\n");
+         }
+         else
+         {
+            printf("You lost\n");
+         }
          break;
        
        }
@@ -121,5 +133,5 @@ char main_menu(char menu_choice)
     return menu_choice;
 }
 
-//helper functions
+
 
