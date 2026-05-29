@@ -18,6 +18,7 @@ void add_options(char options[10][4][100], int questions_number);
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
 char get_user_answer(char user_answer,int questions_number);
+bool has_user_won(int score, int min_score);
 
 
 
@@ -249,6 +250,12 @@ char get_user_answer(char user_answer,int questions_number)
     return user_answer;
 }
 
+
+//validate if user won the quiz funtion
+bool has_user_won(int score, int min_score)
+{
+    return score > min_score;
+}
 
 
 //helper functions
