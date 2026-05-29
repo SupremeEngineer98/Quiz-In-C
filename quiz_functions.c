@@ -192,7 +192,7 @@ void display_questions(char questions[][100],int questions_number,char options[1
     {
        
         //print questions
-        printf("%s\n",questions[i]);
+        printf("\n%s\n",questions[i]);
 
         printf("Options for question %d\n", i+1);
         //nested for loop to display options
@@ -229,18 +229,19 @@ char get_user_answer(char user_answer)
         continue;
 
     }
+        //capitalize input
+    user_answer == toupper(user_answer);
 
     if(user_answer != 'A' && user_answer != 'B' && user_answer != 'C' && user_answer !='D')
     {
-        printf("Invalid choise.Please select between A,B,C or D\n");
+        printf("\nInvalid choise.Please select between A,B,C or D\n");
         
         //clean buffer
         clean_buffer();
         continue;
     }
 
-    //capitalize input
-    user_answer == toupper(user_answer);
+
       break;
 
     }

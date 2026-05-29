@@ -19,7 +19,6 @@ int main()
     char correct_answer[10][100];
     char answer_key[10][10];
     char user_answer = '\0'; 
-    int  question_count = 0;
     int  score = 0;
     int questions_number = 0;
     
@@ -75,9 +74,16 @@ int main()
             //increase score
             score++;
          }
+         else
+         {
+            printf("Incorrect\n");
+
+         }
          
 
          }
+         //display score
+         printf("\nYour final score is: %d out of %d questions\n", score, questions_number);
          break;
        
        }
