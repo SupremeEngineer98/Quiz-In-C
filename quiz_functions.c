@@ -13,7 +13,7 @@ void clean_buffer();
 
 void clean_screen();
 
-void add_options(char options[10][4][100], int questions_number);
+void add_options(char options[10][4][100], int i);
 
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
@@ -26,6 +26,9 @@ bool has_user_won(int score, int min_score);
 //create quiz function!
 void create_quiz(char questions[][100],int questions_number)
 {
+
+    //declare variables
+    char  options[10][4][100];
     while(1)
     {
 
@@ -47,6 +50,9 @@ void create_quiz(char questions[][100],int questions_number)
         clean_buffer();
           continue;
         }
+
+        //add options for this question
+        add_options(options,i);
 
         
     }
@@ -101,45 +107,37 @@ int number_of_questions(int questions_number,int min_score)
 }
 
 //add options function 
-void add_options(char options[10][4][100], int questions_number)
+void add_options(char options[10][4][100], int i)
 {
-   //promt user to enter options!
-    printf("\nPlease enter options for quiz questions with the order you entered the questions\n");
 
+  //promt user to enter options!
+    printf("\nPlease enter options for question: %d\n", i+1);
 
-    //for loop to iterate through the array!
-    for(int i = 0; i< questions_number; i++)
+    //nested for loop to enter the question
+    for(int j =0; j < 4; j++)
     {
-     printf("Option for question %d\n", i+1);
-    
-    //for loop to enter 4 options for each question
-    for(int j = 0; j<4; j++)
-    {
-    
-    printf("\nEnter option %d: ", j + 1);
-    //get user's options
-    fgets(options[i][j],100, stdin);
+        printf("Enter option %d", j+1);
 
-    //sanitizing input
-    options[i][j][strcspn(options[i][j], "\n")]  ='\0';
+        //get option
+        fgets(options[i][j],100, stdin);
 
-    //return an error message if option is null
-    if(options[i][j][0] == 0 )
-    {
-        printf("Invalid input.Please enter a valid option\n");
+        //sanitize input from '\0'
+        options[i][j][strcspn(options[i][j], "\n")] = '\0';
+
+        //validate that input won't be null
+        if(options[i][j][0] == 0)
+        {
+            printf("\nInvalid option. Please enter an option");
+
+             //retry the same option
+             j--;
+            //clean buffer
+            clean_buffer();
+               continue;
+        }
         
-        
-        j--;//retry the same question
-        //clean buffer!
-        clean_buffer();
-          continue;
-    }
-       
+    } 
 
-    }
-      
-
-    }     
 
     
 
@@ -270,7 +268,7 @@ char get_user_answer(char user_answer,int questions_number)
 //validate if user won the quiz funtion
 bool has_user_won(int score, int min_score)
 {
-    return score > min_score;
+    return score >=  min_score;
 }
 
 

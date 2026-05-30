@@ -15,7 +15,7 @@ int main()
     //declaring variables
     char menu_choice = '\0';
     char questions[10][100];
-    char options[10][4][100];
+    char options[10][4][100] = {0};
     char correct_answer[10][100];
     char answer_key[10][10];
     char user_answer = '\0'; 
@@ -41,8 +41,7 @@ int main()
          //create quiz!
          create_quiz(questions,questions_number);
 
-         //add options 
-         add_options(options,questions_number);
+        
 
          //add correct answer for each option
          add_answer_keys(answer_key,options,questions_number);
