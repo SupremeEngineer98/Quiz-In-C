@@ -2,12 +2,13 @@
 #include <string.h>
 #include <stdlib.h>
 #include <ctype.h>
+#include <stdbool.h>
 //file which stores all logic!
 
 //function prototypes
-int number_of_questions(int questions_number, int min_score);
+int number_of_questions(int questions_number, int *min_score);
 
-void create_quiz(char questions[][100],int questions_number);
+void create_quiz(char questions[][100], char  options[10][4][100], int questions_number);
 
 void clean_buffer();
 
@@ -17,6 +18,8 @@ void add_options(char options[10][4][100], int i);
 
 void add_answer_keys(char answer_key[10][10],char options[10][4][100], int questions_number);
 
+void get_question(char questions[][100], int questions_number);
+
 char get_user_answer(char user_answer,int questions_number);
 bool has_user_won(int score, int min_score);
 
@@ -24,19 +27,43 @@ bool has_user_won(int score, int min_score);
 
 
 //create quiz function!
-void create_quiz(char questions[][100],int questions_number)
+void create_quiz(char questions[][100], char options[10][4][100], int questions_number)
 {
 
     //declare variables
-    char  options[10][4][100];
+    
+   
     while(1)
     {
 
-        //for loop to iterate and add the questions
-    for(int i = 0; i < questions_number; i++)
+        //for each loop
+        for(int i = 0; i < questions_number; i++)
+        {
+        
+              //use get_question method to get user's input
+        get_question(questions,i);
+    
+        //add options for this question
+        add_options(options,i);
+
+        }
+      
+      //break loop
+      break;
+
+    }
+    
+
+}
+
+//get question method
+void get_question(char questions[][100], int i)
+{
+
+    while(1)
     {
-        //prompt user to enter a question
-        printf("\nEnter question  %d:", i+1);
+         //prompt user to enter a question
+        printf("\nEnter question  %d:", i +1);
         
         
         fgets(questions[i], 100, stdin);
@@ -49,23 +76,17 @@ void create_quiz(char questions[][100],int questions_number)
           //clean buffer!
         clean_buffer();
           continue;
-        }
+        }   
 
-        //add options for this question
-        add_options(options,i);
+        break;
 
-        
-    }
-      //break loop
-      break;
-
-    }
-    
+    }       
+   
 
 }
 
 //function to get number of questions!
-int number_of_questions(int questions_number,int min_score)
+int number_of_questions(int questions_number,int *min_score)
 {
     while(1)
     {
@@ -116,7 +137,7 @@ void add_options(char options[10][4][100], int i)
     //nested for loop to enter the question
     for(int j =0; j < 4; j++)
     {
-        printf("Enter option %d", j+1);
+        printf("Enter option %d:", j+1);
 
         //get option
         fgets(options[i][j],100, stdin);
@@ -245,7 +266,7 @@ char get_user_answer(char user_answer,int questions_number)
 
     }
         //capitalize input
-    user_answer == toupper(user_answer);
+    user_answer = toupper(user_answer);
 
     if(user_answer != 'A' && user_answer != 'B' && user_answer != 'C' && user_answer !='D')
     {
@@ -268,7 +289,7 @@ char get_user_answer(char user_answer,int questions_number)
 //validate if user won the quiz funtion
 bool has_user_won(int score, int min_score)
 {
-    return score >=  min_score;
+    return score >  min_score;
 }
 
 

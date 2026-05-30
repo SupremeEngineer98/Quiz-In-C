@@ -35,13 +35,11 @@ int main()
        switch(menu_choice)
        {
          case 'A': //create quiz case!
-         //call questions number method to add minimum score and quiz's questions number!
-         questions_number = number_of_questions(questions_number,min_score);
-
+         
+         questions_number = number_of_questions(questions_number,&min_score); //call questions number method to add minimum score and quiz's questions number!
+         
          //create quiz!
-         create_quiz(questions,questions_number);
-
-        
+         create_quiz(questions,options,questions_number);        
 
          //add correct answer for each option
          add_answer_keys(answer_key,options,questions_number);
@@ -49,6 +47,9 @@ int main()
 
          //display quiz case
          case 'B':
+
+         //eliminate score
+         score = 0;
 
               //display an error message if there are no questions added yet
          if(questions_number <= 0)
@@ -73,13 +74,15 @@ int main()
 
             //increase score
             score++;
+            
+           
          }
          else
          {
             printf("Incorrect\n");
 
          }
-         
+           
 
          }
          //display score
